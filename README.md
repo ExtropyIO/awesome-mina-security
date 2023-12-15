@@ -1,0 +1,2 @@
+# AwesomeMina
+MIna Resources
