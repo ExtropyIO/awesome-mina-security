@@ -2,19 +2,33 @@
 
 A curated list of Mina resources with a focus on security.
 
-- [awesome-mina-security](#awesome-mina-security)
-  - [Resources:](#resources)
-  - [Old Links](#old-links)
+👉🏻 Getting started: [Deploy and interact with your first zkAPP in 5 minutes](./gettingStarted.md) 
+
 
 ## Resources:
 
-- Docs: https://docs.minaprotocol.com/
+- Official Docs: https://docs.minaprotocol.com/
 - Awesome mina tools: https://github.com/nerdvibe/awesome-mina 
 - Awsome Mina ZKApps: https://github.com/iam-dev/awesome-zkApps 
 
+## Mina Tools:
+- [zkApp Cli](https://github.com/o1-labs/zkapp-cli)
+- Mina node from the smartphone: [OpenMina](https://openmina.com/)
 
 
+## Mina News:
+- https://minablog.zkok.io/ 
+- Mina June 4 2024 hard fork https://minaprotocol.com/blog/mina-protocols-upcoming-major-upgrade-everything-you-need-to-know
 
+## Mina Projects:
+- Lists: [ZKOK](https://zkok.io/), [list from Mina Foundation](https://github.com/MinaFoundation/list-of-projects?tab=readme-ov-file) 
+- PunkPoll : [website](https://www.punkpoll.io/), https://minaprotocol.com/blog/punkpoll-open-beta - 
+- https://hakata.io/
+- https://snarky.bio/
+- https://paimastudios.com/
+- [Mina Email](https://github.com/0xStruct/moolah/tree/main)
+- [Clor.io](https://clor.io/)
+  
 
 ---
 ## Old Links
