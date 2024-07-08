@@ -2,25 +2,38 @@
 
 A curated list of Mina resources with a focus on security.
 
-👉🏻 Getting started: [Deploy and interact with your first zkAPP in 5 minutes](./gettingStarted.md) 
+## Getting started:
+👉🏻 [Mina and zkApp essentials](./GettingStarted/MinaAndZkAppEssentials.md)\
+👉🏻 [Basics of o1js](./GettingStarted/o1jsBasics.md)\
+👉🏻 [Deploy and interact with your first zkAPP under 10 minutes](./GettingStarted/deployIn10min.md) 
+
+
+## Security aspects of zkApps:
+A list of resources to keep in mind when writing zkApps:\
+🔒 [General post on Security and zkApps](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps)\
+🔒 [Using `Provable.asProver()` on inputs moves them out from the zk proof](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#fix-adding-the-missing-constraints:~:text=as%20well.%20Progress!%20%F0%9F%9A%80-,However,-%2C%20the%20statement%20about)\
+🔒 [Foreign Field Arithmetic should be used with caution](https://docs.minaprotocol.com/zkapps/o1js/foreign-fields#three-kinds-of-foreign-fields)\
+🔒 [Usage of `requireNothing()` when retrieving On-chain Values](https://docs.minaprotocol.com/zkapps/o1js/foreign-fields#three-kinds-of-foreign-fields)\
+🔒 [Permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions) are [not strong enough](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#lock-down-permissions-as-much-as-possible)\
+🔒 [Calling external contracts with permissions not locked down enough](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#only-call-external-contracts-with-locked-down-permissions)
+🔒 [Always extend a well known token standard instead of building from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract)
 
 
 ## Resources:
-
+Documentation:
 - Official Docs: https://docs.minaprotocol.com/
+
+Tools:
 - Awesome mina tools: https://github.com/nerdvibe/awesome-mina 
-- Awsome Mina ZKApps: https://github.com/iam-dev/awesome-zkApps 
-
-## Mina Tools:
 - [zkApp Cli](https://github.com/o1-labs/zkapp-cli)
-- Mina node from the smartphone: [OpenMina](https://openmina.com/)
+- Setting up a Mina node from the smartphone: [OpenMina](https://openmina.com/)
 
-
-## Mina News:
+News:
 - https://minablog.zkok.io/ 
 - Mina June 4 2024 hard fork https://minaprotocol.com/blog/mina-protocols-upcoming-major-upgrade-everything-you-need-to-know
 
-## Mina Projects:
+Projects on Mina:
+- Awesome Mina ZKApps: https://github.com/iam-dev/awesome-zkApps 
 - Lists: [ZKOK](https://zkok.io/), [list from Mina Foundation](https://github.com/MinaFoundation/list-of-projects?tab=readme-ov-file) 
 - PunkPoll : [website](https://www.punkpoll.io/), https://minaprotocol.com/blog/punkpoll-open-beta - 
 - https://hakata.io/
@@ -32,6 +45,7 @@ A curated list of Mina resources with a focus on security.
 
 ---
 ## Old Links
+> This section is a WIP
 
 - https://www.di.ens.fr/~nitulesc/files/Survey-SNARKs.pdf
 - https://arxiv.org/pdf/1906.07221.pdf 
