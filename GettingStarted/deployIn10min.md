@@ -6,6 +6,7 @@ Used [this](https://www.youtube.com/playlist?list=PLItixFkgfjYEvV0SwNpguAu-sNQ4c
   - [Create your first project:](#create-your-first-project)
   - [Deploy the Verifier contract:](#deploy-the-verifier-contract)
   - [Interactions](#interactions)
+  - [Testing](#testing)
 
 
 ### Initial setup:
@@ -20,7 +21,7 @@ Used [this](https://www.youtube.com/playlist?list=PLItixFkgfjYEvV0SwNpguAu-sNQ4c
   ```
 3. Install [zkApp Cli](https://github.com/o1-labs/zkapp-cli)
   ```c
-  npm install zkapp-cli  -g
+  npm install -g zkapp-cli
   ```
 4. Verify zkApp Cli is installed
   ```c
@@ -32,7 +33,7 @@ Used [this](https://www.youtube.com/playlist?list=PLItixFkgfjYEvV0SwNpguAu-sNQ4c
   ```
 
 ### Create your first project:
-1. Move to a desired directory and create a new project  
+1. Move to a desired directory and create a new project. It automatically will install also 01js  
   ```c
   zk project myFirstProject 
   ```
@@ -65,25 +66,30 @@ export class Add extends SmartContract {
 }
 ```
 5. Another file named `interact.ts` will be generated in the `/src` folder. This file takes care of interacting with `Add.ts` and is where ZKP is actually generated using `tx.prove()` method.
-
+6. Build the smart contract
+  ```c
+  npm run build
+  ```
 
 ### Deploy the Verifier contract:
 1. Create a local test network and give it a name when asked (e.g. `testnet`)
   ```c
   zk config 
   ```
-2. Set an API URL to interact with it (e.g `https://api.minascan.io/node/devnet/v1/graphql` but this may change in the future)
-3. Set tx fee (e.g `0.1`)
-4. Select the account that should pay for fees. You can also create one directly when asked, giving it an alias (e.g. `testpayer`). A private key and public key will be generated and stored in the `testpayer.json` file stored in the xkapp-cli folder somewhere in your computer. 
-5. Done! A link will be prompted in the console with a link to a faucet to get some tMINA tokens for testing to the newly created account. Request them and wait for the tx to be processed.
-6. Deploy the contract and select the newly created network when asked
+2. Set the network type between testnet/mainnet when asked
+3. Set an API URL to interact with it (e.g `https://api.minascan.io/node/devnet/v1/graphql` but this may change in the future)
+4. Set tx fee (e.g `0.1`)
+5. Select the account that should pay for fees. You can also create one directly when asked, giving it an alias (e.g. `testpayer`). A private key and public key will be generated and stored in the `testpayer.json` file stored in the xkapp-cli folder somewhere in your computer. 
+6. Done! A link will be prompted in the console with a link to a faucet to get some tMINA tokens for testing to the newly created account. Request them and wait for the tx to be processed.
+7. Deploy the contract and select the newly created network when asked
   ```c
-  zk deploy
+  zk deploy myFirstProject
   ```
-7. The console will log all the informations and addresses related to the deployment together with a link to the testnet explorer of the deploy tx
-8. Open that link and wait till the tx will be processed ([example tx](https://minascan.io/devnet/tx/5JtVRNaeF7qT9qbw2gexhirwNBnxWvFQn6U6SdHELAtwBrHdRJKd?type=zk-tx)). In it you can find:
+1. The console will log all the informations and addresses related to the deployment together with a link to the testnet explorer of the deploy tx
+2. Open that link and wait till the tx will be processed ([example tx](https://minascan.io/devnet/tx/5JtVRNaeF7qT9qbw2gexhirwNBnxWvFQn6U6SdHELAtwBrHdRJKd?type=zk-tx)). In it you can find:
    - the appState of the `Add.ts` contract just deployed with 1 in appState[0] 
    - the `verificationKeyHash` (if you can't find it enable `Raw JSON` toggle on the top-right corner of the page and search it in the page). This hash is used to identify if an account on Mina is a zkApp. While deploying this contract we actually created a Verifier contract which live on-chain and must have a verification key. Important: the contract code is not stored on chain, the zkApp can only verify the proof you send it through the verification Key.
+
 ### Interactions
 Within the file `interact.ts` there is the code for interacting with the on-chain state. Interaction take place between the **Prover** (the `feepayer`) and the **Verifier** (the zkApp deployed).
 
@@ -123,3 +129,16 @@ The command to execute `interact.ts` is:
     npm run build && node build/src/interact.js DEPLOY_ALIAS // for this example DEPLOY_ALIAS=testnet
 ```
 After it if we look to the [appState](https://minascan.io/devnet/account/B62qkebMxnT4U7vnDJ5WuRMMvAMfRZmLCe7DBS4Q4DLvGHnzuxAv498) of the zkApp we will see 3 in the field 0 since the update() method increased the initial state, which was 1, by 2.
+
+
+### Testing
+- https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps#3-add-testing-code 
+- https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps#5-create-integration-test
+- https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps#7-test-with-lightnet
+- https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-lightnet
+- https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps#8-test-with-a-live-network
+- https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/testing-zkapps-locally
+
+  ```c
+  npm run test
+  ```

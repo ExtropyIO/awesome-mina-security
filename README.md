@@ -8,15 +8,20 @@ A curated list of Mina resources with a focus on security.
 👉🏻 [Deploy and interact with your first zkAPP under 10 minutes](./GettingStarted/deployIn10min.md) 
 
 
-## Security aspects of zkApps:
+
+## Security considerations when writing zkApps:
 A list of resources to keep in mind when writing zkApps:\
 🔒 [General post on Security and zkApps](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps)\
 🔒 [Using `Provable.asProver()` on inputs moves them out from the zk proof](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#fix-adding-the-missing-constraints:~:text=as%20well.%20Progress!%20%F0%9F%9A%80-,However,-%2C%20the%20statement%20about)\
 🔒 [Foreign Field Arithmetic should be used with caution](https://docs.minaprotocol.com/zkapps/o1js/foreign-fields#three-kinds-of-foreign-fields)\
 🔒 [Usage of `requireNothing()` when retrieving On-chain Values](https://docs.minaprotocol.com/zkapps/o1js/foreign-fields#three-kinds-of-foreign-fields)\
 🔒 [Permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions) are [not strong enough](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#lock-down-permissions-as-much-as-possible)\
-🔒 [Calling external contracts with permissions not locked down enough](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#only-call-external-contracts-with-locked-down-permissions)
-🔒 [Always extend a well known token standard instead of building from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract)
+🔒 [Calling external contracts with permissions not locked down enough](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#only-call-external-contracts-with-locked-down-permissions)\
+🔒 [Always extend a well known token standard instead of building from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract)\
+🔒 if condition is used instead of `const x = Circuit.if(new Bool(foo), a, b);`\
+🔒 [Onchain merkle tree root not synced with offchain merkle root](https://docs.minaprotocol.com/zkapps/o1js/merkle-tree#:~:text=is%20always%20in-,sync,-with%20the%20actual)\
+🔒 [Use on-chain values without checking it either at verification and proving time](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=off%2Dchain%20execution.-,When,-you%20use%20an)\
+🔒 [Possible race conditions when many users read/write the state concurrently](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=and%20update%20state-,concurrently,-.%20It%20is%20applicable)
 
 
 ## Resources:
@@ -27,6 +32,7 @@ Tools:
 - Awesome mina tools: https://github.com/nerdvibe/awesome-mina 
 - [zkApp Cli](https://github.com/o1-labs/zkapp-cli)
 - Setting up a Mina node from the smartphone: [OpenMina](https://openmina.com/)
+- [zkApps official examples](https://github.com/o1-labs/o1js/tree/main/src/examples/zkapps) 
 
 News:
 - https://minablog.zkok.io/ 
