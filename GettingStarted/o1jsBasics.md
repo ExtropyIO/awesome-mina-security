@@ -17,6 +17,13 @@ Scalar; // the corresponding scalar field (different than Field)
 
 CircuitString.from('some string'); // string of max length 128
 ```
+- It's possible to have custom data types creating a class that extends `Struct({ })` 
+```js
+class Point extends Struct({
+  x: Field,
+  y: Field,
+}) {}
+```
 - if condition is not working as usual Typescript code
 ```js
 // this will NOT work ❌
