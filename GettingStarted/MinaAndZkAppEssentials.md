@@ -89,7 +89,7 @@ class HelloWorld extends SmartContract {
   }
 }
 ```
-- Instad of `requireEquals(x)` also assertions can be used. If the assertion fails, o1js throws an error and does not submit the transaction. If the assertion succeeds, it becomes part of the proof that is verified on-chain.
+- Instad of `requireEquals(x)` also assertions can be used. If the assertion fails, o1js throws an error and does not submit the transaction. If the assertion succeeds, it becomes part of the proof that is verified on-chain. Using assertions in o1js means adding constraint logic to your code. E.g. if you call `a.assertLessThan(b)`, you prove that `a < b` under all circumstances.
 ```js
 x.assertEquals(y); // x = y
 x.assertBoolean(); // x = 0 or x = 1
@@ -183,6 +183,7 @@ Mina.setActiveInstance(Local);
   - - If set to `impossibleDuringCurrentVersion()` it will not be possible to update the verification key unless an hardfork happens, namely the new transaction version is greater than the old one. More [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#upgrading-after-an-update-to-the-mina-protocol) and [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-impossible-to-upgrade).
 - Events -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/events).
 - Actions & Reducers -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer)
+- Concurrent state updates example using Actions&Reducers -> TO-DO [here](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/reducer/reducer-composite.ts)
 - Fetch events & actions -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions)
 - Time Locked accounts -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/time-locked-accounts)
 - Custom Tokens -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/custom-tokens)
