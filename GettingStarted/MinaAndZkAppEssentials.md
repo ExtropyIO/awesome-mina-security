@@ -174,8 +174,8 @@ Mina.setActiveInstance(Local);
 - The types of authorizations are:
   - `none`: Everyone has access to fields and can manipulate them as they please
   - `impossible`: nothing can ever change this field
-  - `signature`: can only be manipulated by account updates that are accompanied and authorized by a valid signature
-  - `proof`: can be manipulated only by account updates that are accompanied and authorized by a valid proof
+  - `signature`: can only be manipulated by account updates that are accompanied and authorized by a valid signature. Although this is the simplest approach, it is the least flexible
+  - `proof`: can be manipulated only by account updates that are accompanied and authorized by a valid proof. More flexible and asynchronous approach.
   - `proofOrSignature`: permissions with authorization set to proofOrSignature accept either a valid signature or a valid proof.
 - Setting permissions arbitrarly may be dangerous (e.g `editState` set to `none` is very dangerous). This is way smart contracts, when first deployed, always start with [default permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#default-permissions)
 - The permission named `setVerificationKey` allows smart contract upgradeability. This is useful for letting zkApp developers to update the logic of their zkApp and keep them working if the Mina Protocol will undergo an update in the future.:

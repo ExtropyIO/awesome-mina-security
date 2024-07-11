@@ -1,6 +1,6 @@
 # awesome-mina-security
 
-A curated list of Mina resources with a focus on security.
+A curated list of Mina resources with a focus on security from [Extropy.io](https://www.extropy.io/) .
 
 ## Getting started
 👉🏻 [Mina and zkApp essentials](./GettingStarted/MinaAndZkAppEssentials.md)\
@@ -31,31 +31,40 @@ A list of security considerations to keep in mind when writing zkApps:\
 🔒 [Possible race conditions when many users read/write the state concurrently](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=and%20update%20state-,concurrently,-.%20It%20is%20applicable)\
 🔒 [The `reduce()` method breaks if more than the hard-coded number (default: 32) of actions are pending](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer)\
 🔒 [Be careful when creating Account Updates from a reducer](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=accounts%20from%20a-,reducer,-%2C%20or%20in%20any)\
-🔒 [Minting unlimited tokens to himself is possile for an attacker if a custom token contract does not change `access` permission from `none` to at least `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=can%20mint%20an-,arbitrary,-number%20of%20tokens)
-🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-fungible-token)\
+🔒 [Minting unlimited tokens to himself is possile for an attacker if a custom token contract does not change `access` permission from `none` to at least `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=can%20mint%20an-,arbitrary,-number%20of%20tokens)\
+🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-fungible-token)
 
 
 ## Resources:
 Documentation:
-- Official Docs: https://docs.minaprotocol.com/
+- [Official Docs](https://docs.minaprotocol.com/) 
+- [Mina tutorials](https://docs.minaprotocol.com/zkapps/tutorials)
 
 Tools:
-- Awesome mina tools: https://github.com/nerdvibe/awesome-mina 
+- [Awesome mina tools](https://github.com/nerdvibe/awesome-mina) 
 - [zkApp Cli](https://github.com/o1-labs/zkapp-cli)
-- Setting up a Mina node from the smartphone: [OpenMina](https://openmina.com/)
+- [OpenMina: setting up a node from the smartphone](https://openmina.com/)
 - [zkApps official examples](https://github.com/o1-labs/o1js/tree/main/src/examples/zkapps) 
+- [Mina Playground](https://www.minaplayground.com/)
 
 News:
-- https://minablog.zkok.io/ 
-- Mina June 4 2024 hard fork https://minaprotocol.com/blog/mina-protocols-upcoming-major-upgrade-everything-you-need-to-know
+- [zkok MinaBlog](https://minablog.zkok.io/) 
+- [Mina June 4 2024 hard fork announcement](https://minaprotocol.com/blog/mina-protocols-upcoming-major-upgrade-everything-you-need-to-know) 
+
+zk and Mina courses:
+- [Extropy](https://www.extropy.io/#services)
+- [zkIgnite](https://zkignite.minaprotocol.com/)
 
 Projects on Mina:
-- Awesome Mina ZKApps: https://github.com/iam-dev/awesome-zkApps 
-- Lists: [ZKOK](https://zkok.io/), [list from Mina Foundation](https://github.com/MinaFoundation/list-of-projects?tab=readme-ov-file) 
-- PunkPoll : [website](https://www.punkpoll.io/), https://minaprotocol.com/blog/punkpoll-open-beta - 
-- https://hakata.io/
-- https://snarky.bio/
-- https://paimastudios.com/
+- [Awesome Mina ZKApps](https://github.com/iam-dev/awesome-zkApps) 
+- [zkApp list from zkok](https://zkok.io/)
+- [list from Mina Foundation](https://github.com/MinaFoundation/list-of-projects?tab=readme-ov-file) 
+- [Anomix](https://github.com/anomix-zk/anomix-network/tree/main)
+- [Zeko](https://github.com/zeko-labs)
+- [PunkPoll](https://www.punkpoll.io/)
+- [Hakata](https://hakata.io/) 
+- [Snarky.bio](https://snarky.bio/) 
+- [PaimaStudios](https://paimastudios.com/) 
 - [Mina Email](https://github.com/0xStruct/moolah/tree/main)
 - [Clor.io](https://clor.io/)
   
