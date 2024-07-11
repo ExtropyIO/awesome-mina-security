@@ -51,10 +51,6 @@ News:
 - [zkok MinaBlog](https://minablog.zkok.io/) 
 - [Mina June 4 2024 hard fork announcement](https://minaprotocol.com/blog/mina-protocols-upcoming-major-upgrade-everything-you-need-to-know) 
 
-zk and Mina courses:
-- [Extropy](https://www.extropy.io/#services)
-- [zkIgnite](https://zkignite.minaprotocol.com/)
-
 Projects on Mina:
 - [Awesome Mina ZKApps](https://github.com/iam-dev/awesome-zkApps) 
 - [zkApp list from zkok](https://zkok.io/)
