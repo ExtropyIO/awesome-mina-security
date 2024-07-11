@@ -23,8 +23,7 @@ A list of security considerations to keep in mind when writing zkApps:\
 🔒 [if `access` and `receive` permissions are not set to `none` a deadlock may occur while doing concurrent state updates + safe way of doing an airdrop](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts)\
 🔒 [smart contract interactions are limited to `signature` instead of `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-unsecurecontract:~:text=the%20transaction%20succeeds.-,However,-%2C%20this%20way%20of)\
 🔒 [restrictive permissions can be circumvented if `setPermissions` is not set to impossible](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-impossible-to-upgrade:~:text=For%20the-,sake,-of%20security%2C%20it)\
-
-🔒 if condition is used instead of `const x = Circuit.if(new Bool(foo), a, b);`\
+🔒 [if condition is used instead of `const x = Circuit.if(new Bool(foo), a, b);`](https://docs.minaprotocol.com/zkapps/o1js/basic-concepts#conditionals)\
 🔒 [lack of access controls](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-unsecurecontract:~:text=not%20very%20secure%3A-,Anyone,-can%20call%20the)\
 🔒 [Onchain merkle tree root not synced with offchain merkle root](https://docs.minaprotocol.com/zkapps/o1js/merkle-tree#:~:text=is%20always%20in-,sync,-with%20the%20actual)\
 🔒 [Use on-chain values without checking them both at verification and proving time](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=off%2Dchain%20execution.-,When,-you%20use%20an)\
