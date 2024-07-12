@@ -169,7 +169,7 @@ Mina.setActiveInstance(Network);
 const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
-- Permissions are realated to each zkApp and are stored on chain. They determine who has the authority to interact and make changes to a specific part of a smart contract. Full list [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#types-of-permissions).
+- Permissions are related to each zkApp and are stored on chain. They determine who has the authority to interact and make changes to a specific part of a smart contract. Full list [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#types-of-permissions).
 - Authorization determines what resources can be accessed, while permissions just describe who has the ability to execute an action.
 - The types of authorizations are:
   - `none`: Everyone has access to fields and can manipulate them as they please
@@ -180,10 +180,71 @@ Mina.setActiveInstance(Local);
 - Setting permissions arbitrarly may be dangerous (e.g `editState` set to `none` is very dangerous). This is way smart contracts, when first deployed, always start with [default permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#default-permissions)
 - The permission named `setVerificationKey` allows smart contract upgradeability. This is useful for letting zkApp developers to update the logic of their zkApp and keep them working if the Mina Protocol will undergo an update in the future.:
   - `setVerificationKey` has slightly different authorizations types: `none`, `signature`, `proofOrSignature` exist as they were, instead `impossible` now is `impossibleDuringCurrentVersion` and `proof` now is `proofDuringCurrentVersion`
-  - - If set to `impossibleDuringCurrentVersion()` it will not be possible to update the verification key unless an hardfork happens, namely the new transaction version is greater than the old one. More [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#upgrading-after-an-update-to-the-mina-protocol) and [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-impossible-to-upgrade).
-- Events -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/events).
-- Actions & Reducers -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer)
-- Concurrent state updates example using Actions&Reducers -> TO-DO [here](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/reducer/reducer-composite.ts)
+  - If set to `impossibleDuringCurrentVersion()` it will not be possible to update the verification key unless an hardfork happens, namely the new transaction version is greater than the old one. More [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#upgrading-after-an-update-to-the-mina-protocol) and [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-impossible-to-upgrade).
+- Events:
+  - are informations passed along with a transaction
+  - use cases: a zkApp would like to publish a message and so emits an event for observers, highlight state changes of an off chain storage (e.g. merkle trees are stored off chain and commit only the root on-chain: when a leaf changes its value the root changes and in the event you can emit what actually changed) 
+  - Events are not stored on-chain but after a couple of transactions are moved from the consensus nodes to the archive nodes. In the archive nodes you can refer to them but you cannot prove the relations between them and the contract that emitted them.
+  - To use events:
+    ```js
+    class MyContract extends SmartContract {
+        events = { //declare an events field at the top level of the contract.It contains the names and types of your events
+         "add-merkle-leaf": Field, 
+         "update-merkle-leaf": Field, 
+         //used Field as an example. Any type can be used: usually Struct are used
+        }
+
+        @method async updateMerkleTree(leaf: Field, ...) {
+            this.emitEvent("update-merkle-leaf", leaf);
+            // emit the event when there is the need
+        }
+    }
+    ```
+- Actions & Reducers:
+  - like events, actions are public arbitrary information passed with a tx and stored in archive nodes. But unlike events now it's possible to process previous actions since exists a way link actions with the smart contract that "generated" them
+  - Indeed actions commitments are stored to the history of the dispatched action of every account, called the `actionState`
+  - The main use case is for writie zkApps that process concurrent state updates by multiple users. Example [here](https://github.com/o1-labs/o1js/blob/main/src/examples/zkapps/reducer/reducer-composite.ts)
+  - Reducers are objects that take a list of actions and allows you to call on them:
+    -  `dispatch()` -> like emitting events, it simply pushes one new action to your account's `actionState`
+    -  `reduce()` -> allows you to write more complex code in order to read and do operations on the actions of the `actionState` . Below an example of using reduce() to find an action = Field(1000) in a list of actions
+  - To use Actions & Reducers:
+  ```js
+    import { SmartContract, Reducer, Field } from 'o1js';
+
+    class MyContract extends SmartContract {
+        reducer = Reducer({ actionType: Field }); 
+        // unlike events, actions have only one type per smart contract. In this example is Field
+
+        @method async examples() {
+            this.reducer.dispatch(Field(1000)); //example use dispatch()
+
+            //example of use reduce() to find an action = Field(1000) in a list of actions
+            let stateType = Bool;
+            let actions = [[Field(1000)], [Field(2)], [Field(100)]]; // of type Field since our reducer's actionType is Field
+            let initial = { state: Bool(false), };
+            let newState = this.reducer.reduce( 
+                actions, // array of Fields 
+                stateType, // since is of type Bool we pass Bool to `state:` below
+                (state: Bool, action: Field) => state.or(action.equals(1000)),
+                initial //change the state after computing the callback. The result stored in initial will be `state: Bool(true)` since an action=1000 exists in actions array
+            );
+        }
+
+    }
+  ```
+- Off chain storage -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/offchain-storage)
 - Fetch events & actions -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions)
 - Time Locked accounts -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/time-locked-accounts)
-- Custom Tokens -> TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/custom-tokens)
+- Custom Tokens:
+  - Mina supports custom tokens as they were the native MINA token. Each account on Mina can have multiple custom token accounts associated with it.
+  - `Token Manager Account` is the smart contract who create the custom token. It can set the token name (which is not unique globally) and sets the rules around minting, burning, and sending the custom token. More [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/custom-tokens#token-manager-account).
+  - Your custom token contract should inherit from the `TokenContract` blueprint
+  ```js
+    class ExampleTokenContract extends TokenContract {
+        // your custom token implementation
+    }   
+  ```
+  - `Token id` is the unique identifier for the custom token and it's derived from the zkApp.  Check it using `this.token.id` property. Token ids are unique globally, instead, the token name can be the same for different custom tokens.
+  - `Token Accounts` are regular accounts holding custom tokens instead of MINA. A token account is created from an existing account and is specified by a public key and a token id. Token accounts are customToken-specific, so a single public key can have many different token accounts each one created when receiving a custom token for the first time (paying a creation fee).
+  - `Tokem Owner Account` is the governing zkApp account for a specific custom token and the only account that can mint and burn custom tokens and approve sending tokens between two accounts.
+  

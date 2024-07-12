@@ -16,7 +16,7 @@ A list of security considerations to keep in mind when writing zkApps:\
 🔒 [Never trust methods callers](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#second-problem-we-trusted-the-caller)\
 🔒 [Foreign Field Arithmetic should be used with caution](https://docs.minaprotocol.com/zkapps/o1js/foreign-fields#three-kinds-of-foreign-fields)\
 🔒 [Usage of `requireNothing()` when retrieving On-chain Values may be dangerous](https://docs.minaprotocol.com/zkapps/o1js/foreign-fields#three-kinds-of-foreign-fields)\
-🔒 [Permissions not locked down enough + adviced for setting permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#lock-down-permissions-as-much-as-possible)\
+🔒 [Permissions not locked down enough + advices for setting permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#lock-down-permissions-as-much-as-possible)\
 🔒 [Calling external contracts with permissions not locked down enough](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#only-call-external-contracts-with-locked-down-permissions)\
 🔒 [`editState` permission set to none](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#types-of-permissions:~:text=the%20smart%20contract.-,However,-%2C%20imagine%20if%20a)\
 🔒 [`send` permission set to none](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#default-permissions)\
@@ -63,6 +63,7 @@ Projects on Mina:
 - [PaimaStudios](https://paimastudios.com/) 
 - [Mina Email](https://github.com/0xStruct/moolah/tree/main)
 - [Clor.io](https://clor.io/)
+- [zk-invoices](https://github.com/kriss1897/zk-invoices/tree/main)
   
 
 ---
