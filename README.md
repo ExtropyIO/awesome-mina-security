@@ -32,7 +32,7 @@ A list of security considerations to keep in mind when writing zkApps:\
 🔒 [The `reduce()` method breaks if more than the hard-coded number (default: 32) of actions are pending](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer)\
 🔒 [Be careful when creating Account Updates from a reducer](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=accounts%20from%20a-,reducer,-%2C%20or%20in%20any)\
 🔒 [Minting unlimited tokens to himself is possile for an attacker if a custom token contract does not change `access` permission from `none` to at least `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=can%20mint%20an-,arbitrary,-number%20of%20tokens)\
-🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-fungible-token)
+🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-le-token)
 
 
 ## Resources:
@@ -40,12 +40,13 @@ Documentation:
 - [Official Docs](https://docs.minaprotocol.com/) 
 - [Mina tutorials](https://docs.minaprotocol.com/zkapps/tutorials)
 
-Tools:
+Tools & Frameworks:
 - [Awesome mina tools](https://github.com/nerdvibe/awesome-mina) 
 - [zkApp Cli](https://github.com/o1-labs/zkapp-cli)
 - [OpenMina: setting up a node from the smartphone](https://openmina.com/)
 - [zkApps official examples](https://github.com/o1-labs/o1js/tree/main/src/examples/zkapps) 
 - [Mina Playground](https://www.minaplayground.com/)
+- [Protokit](https://protokit.dev/)
 
 News:
 - [zkok MinaBlog](https://minablog.zkok.io/) 
@@ -58,12 +59,22 @@ Projects on Mina:
 - [Anomix](https://github.com/anomix-zk/anomix-network/tree/main)
 - [Zeko](https://github.com/zeko-labs)
 - [PunkPoll](https://www.punkpoll.io/)
+- [ID-Mask](https://idmask.xyz/)
 - [Hakata](https://hakata.io/) 
+- [ZkNoid](https://www.zknoid.io/)
+- [ZKPassport](https://github.com/MinaFoundation/Core-Grants/issues/18)
 - [Snarky.bio](https://snarky.bio/) 
 - [PaimaStudios](https://paimastudios.com/) 
 - [Mina Email](https://github.com/0xStruct/moolah/tree/main)
 - [Clor.io](https://clor.io/)
 - [zk-invoices](https://github.com/kriss1897/zk-invoices/tree/main)
+- [zkPass](https://zkpass.org/)
+- [ZKON](https://www.zkon.xyz/)
+- [zeko](https://zeko.io/)
+- [Hazook](https://github.com/ycryptx/Hazook-Fast-Zk-Rollup)
+- [Lumina DEX](https://luminadex.com/)
+- [SocialCap](https://socialcap.app/)
+
   
 
 ---

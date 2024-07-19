@@ -207,6 +207,7 @@ Mina.setActiveInstance(Local);
   - Reducers are objects that take a list of actions and allows you to call on them:
     -  `dispatch()` -> like emitting events, it simply pushes one new action to your account's `actionState`
     -  `reduce()` -> allows you to write more complex code in order to read and do operations on the actions of the `actionState` . Below an example of using reduce() to find an action = Field(1000) in a list of actions
+  - A new kind of reducers is [under development](https://github.com/o1-labs/o1js/pull/1676): the goal is to reduce actions in small batches and avoid deadlock when more actions than your batch size are pending. 
   - To use Actions & Reducers:
   ```js
     import { SmartContract, Reducer, Field } from 'o1js';
@@ -238,13 +239,13 @@ Mina.setActiveInstance(Local);
 - Custom Tokens:
   - Mina supports custom tokens as they were the native MINA token. Each account on Mina can have multiple custom token accounts associated with it.
   - `Token Manager Account` is the smart contract who create the custom token. It can set the token name (which is not unique globally) and sets the rules around minting, burning, and sending the custom token. More [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/custom-tokens#token-manager-account).
+  - `Token id` is the unique identifier for the custom token and it's derived from the zkApp.  Check it using `this.token.id` property. Token ids are unique globally, instead, the token name can be the same for different custom tokens.
+  - `Token Accounts` are regular accounts holding custom tokens instead of MINA. A token account is created from an existing account and is specified by a public key and a token id. Token accounts are customToken-specific, so a single public key can have many different token accounts each one created when receiving a custom token for the first time (paying a creation fee).
+  - `Tokem Owner Account` is the governing zkApp account for a specific custom token and the only account that can mint and burn custom tokens and approve sending tokens between two accounts.
   - Your custom token contract should inherit from the `TokenContract` blueprint
   ```js
     class ExampleTokenContract extends TokenContract {
         // your custom token implementation
     }   
   ```
-  - `Token id` is the unique identifier for the custom token and it's derived from the zkApp.  Check it using `this.token.id` property. Token ids are unique globally, instead, the token name can be the same for different custom tokens.
-  - `Token Accounts` are regular accounts holding custom tokens instead of MINA. A token account is created from an existing account and is specified by a public key and a token id. Token accounts are customToken-specific, so a single public key can have many different token accounts each one created when receiving a custom token for the first time (paying a creation fee).
-  - `Tokem Owner Account` is the governing zkApp account for a specific custom token and the only account that can mint and burn custom tokens and approve sending tokens between two accounts.
-  
+  - There is the [mina-fungible-token](https://github.com/MinaFoundation/mina-fungible-token) which is built as an extension of `TokenContract` with the goal to provide a standard implementation of fungible tokens in Mina following the [RFC14: Fungible Token Standard on Mina](https://github.com/o1-labs/rfcs/blob/main/0014-fungible-token-standard.md)
