@@ -170,6 +170,22 @@ const Local = Mina.LocalBlockchain();
 Mina.setActiveInstance(Local);
 ```
 - Permissions are related to each zkApp and are stored on chain. They determine who has the authority to interact and make changes to a specific part of a smart contract. Full list [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#types-of-permissions).
+  - [Default permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#default-permissions):
+  ```text
+    access: none
+    editActionState: proof
+    editState: proof
+    incrementNonce: signature
+    receive: none
+    send: proof
+    setDelegate: signature
+    setPermissions: signature
+    setTiming: signature
+    setTokenSymbol: signature
+    setVerificationKey: signature
+    setVotingFor: signature
+    setZkAppUri: signature
+  ```
 - Authorization determines what resources can be accessed, while permissions just describe who has the ability to execute an action.
 - The types of authorizations are:
   - `none`: Everyone has access to fields and can manipulate them as they please

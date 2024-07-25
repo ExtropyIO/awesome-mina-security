@@ -8,7 +8,7 @@ A curated list of Mina resources with a focus on security from [Extropy.io](http
 👉🏻 [Deploy and interact with your first zkAPP under 10 minutes](./GettingStarted/deployIn10min.md) 
 
 ## Security aspects of zkApps
-A list of security considerations to keep in mind when writing zkApps:\
+A list of security considerations to keep in mind when writing zkApps:
 >NOTE: links should open the related page of the docs at the correct point where the issue is being mentioned. However for unknown reason after a page is opened it quickly goes at the top. At the moment please search for the mentioned words in the page, we will try to find a solution asap to this problem
 
 Generic issues:\
