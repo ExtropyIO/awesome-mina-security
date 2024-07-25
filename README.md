@@ -13,6 +13,7 @@ A list of security considerations to keep in mind when writing zkApps:
 
 Generic issues:\
 🔒 [Underconstrained Proofs: unproved logic can be manipulated by a malicious prover](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#:~:text=exploit%20your%20application.-,Underconstrained,-proofs%3A%20Successfully%20%22calling)\
+🔒 [Overriding `init()` is unnecessary if only `super.init()` is called inside without no other state initialization](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#initializing-state)\
 🔒 [Conversion between an o1js `Bool` and javascript `boolean` is always truthy](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#rolling-your-own-provable-methods:~:text=boolean%2C%20is%20always-,truthy,-%2C%20so%20this%20always)\
 🔒 [Using `Provable.asProver()` on inputs moves them out from the zk proof: anyone can remove the Provable block, execute the off-chain code and send a valid proof passing constraints](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#fix-adding-the-missing-constraints:~:text=as%20well.%20Progress!%20%F0%9F%9A%80-,However,-%2C%20the%20statement%20about)\
 🔒 [Writing custom low-level provable methods may add underconstrained logic](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#rolling-your-own-provable-methods)\
@@ -29,6 +30,7 @@ Generic issues:\
 🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-le-token)
 
 Permissions related issues:\
+🔒 [Explicitly setting Permissions to default is unnecessary if no other permissions are modified in the `init()` function](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#default-permissions:~:text=send%3A%20Permissions.proof()%2C-,Alternatively,-%2C%20you%20can%20just)\
 🔒 [Permissions not locked down enough + advices for setting permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#lock-down-permissions-as-much-as-possible)\
 🔒 [Calling external contracts with permissions not locked down enough](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#only-call-external-contracts-with-locked-down-permissions)\
 🔒 [`editState` permission set to none](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#types-of-permissions:~:text=the%20smart%20contract.-,However,-%2C%20imagine%20if%20a)\
