@@ -9,6 +9,9 @@ A curated list of Mina resources with a focus on security from [Extropy.io](http
 
 ## Security aspects of zkApps
 A list of security considerations to keep in mind when writing zkApps:\
+>NOTE: links should open the related page of the docs at the correct point where the issue is being mentioned. However for unknown reason after a page is opened it quickly goes at the top. At the moment please search for the mentioned words in the page, we will try to find a solution asap to this problem
+
+Generic issues:\
 🔒 [Underconstrained Proofs: unproved logic can be manipulated by a malicious prover](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#:~:text=exploit%20your%20application.-,Underconstrained,-proofs%3A%20Successfully%20%22calling)\
 🔒 [Conversion between an o1js `Bool` and javascript `boolean` is always truthy](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#rolling-your-own-provable-methods:~:text=boolean%2C%20is%20always-,truthy,-%2C%20so%20this%20always)\
 🔒 [Using `Provable.asProver()` on inputs moves them out from the zk proof: anyone can remove the Provable block, execute the off-chain code and send a valid proof passing constraints](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#fix-adding-the-missing-constraints:~:text=as%20well.%20Progress!%20%F0%9F%9A%80-,However,-%2C%20the%20statement%20about)\
@@ -16,6 +19,16 @@ A list of security considerations to keep in mind when writing zkApps:\
 🔒 [Never trust methods callers](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#second-problem-we-trusted-the-caller)\
 🔒 [Foreign Field Arithmetic should be used with caution](https://docs.minaprotocol.com/zkapps/o1js/foreign-fields#three-kinds-of-foreign-fields)\
 🔒 [Usage of `requireNothing()` when retrieving On-chain Values may be dangerous](https://docs.minaprotocol.com/zkapps/o1js/foreign-fields#three-kinds-of-foreign-fields)\
+🔒 [if condition is used instead of `const x = Circuit.if(new Bool(foo), a, b);`](https://docs.minaprotocol.com/zkapps/o1js/basic-concepts#conditionals)\
+🔒 [Onchain merkle tree root not synced with offchain merkle root](https://docs.minaprotocol.com/zkapps/o1js/merkle-tree#:~:text=is%20always%20in-,sync,-with%20the%20actual)\
+🔒 [Use on-chain values without checking them both at verification and proving time](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=off%2Dchain%20execution.-,When,-you%20use%20an)\
+🔒 [Circumventing 01js security features should be avoided](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#fix-adding-the-missing-constraints:~:text=flag%20in%20general.-,Security,-advice%20%232%3A%20Don%27t)\
+🔒 [Possible race conditions when many users read/write the state concurrently](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=and%20update%20state-,concurrently,-.%20It%20is%20applicable)\
+🔒 [The `reduce()` method breaks if more than the hard-coded number (default: 32) of actions are pending](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer)\
+🔒 [Be careful when creating Account Updates from a reducer](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=accounts%20from%20a-,reducer,-%2C%20or%20in%20any)\
+🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-le-token)
+
+Permissions related issues:\
 🔒 [Permissions not locked down enough + advices for setting permissions](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#lock-down-permissions-as-much-as-possible)\
 🔒 [Calling external contracts with permissions not locked down enough](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#only-call-external-contracts-with-locked-down-permissions)\
 🔒 [`editState` permission set to none](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#types-of-permissions:~:text=the%20smart%20contract.-,However,-%2C%20imagine%20if%20a)\
@@ -23,16 +36,9 @@ A list of security considerations to keep in mind when writing zkApps:\
 🔒 [if `access` and `receive` permissions are not set to `none` a deadlock may occur while doing concurrent state updates + safe way of doing an airdrop](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts)\
 🔒 [smart contract interactions are limited to `signature` instead of `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-unsecurecontract:~:text=the%20transaction%20succeeds.-,However,-%2C%20this%20way%20of)\
 🔒 [restrictive permissions can be circumvented if `setPermissions` is not set to impossible](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-impossible-to-upgrade:~:text=For%20the-,sake,-of%20security%2C%20it)\
-🔒 [if condition is used instead of `const x = Circuit.if(new Bool(foo), a, b);`](https://docs.minaprotocol.com/zkapps/o1js/basic-concepts#conditionals)\
 🔒 [lack of access controls](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-unsecurecontract:~:text=not%20very%20secure%3A-,Anyone,-can%20call%20the)\
-🔒 [Onchain merkle tree root not synced with offchain merkle root](https://docs.minaprotocol.com/zkapps/o1js/merkle-tree#:~:text=is%20always%20in-,sync,-with%20the%20actual)\
-🔒 [Use on-chain values without checking them both at verification and proving time](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=off%2Dchain%20execution.-,When,-you%20use%20an)\
-🔒 [Circumventing 01js security features should be avoided](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#fix-adding-the-missing-constraints:~:text=flag%20in%20general.-,Security,-advice%20%232%3A%20Don%27t)\
-🔒 [Possible race conditions when many users read/write the state concurrently](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=and%20update%20state-,concurrently,-.%20It%20is%20applicable)\
-🔒 [The `reduce()` method breaks if more than the hard-coded number (default: 32) of actions are pending](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer)\
-🔒 [Be careful when creating Account Updates from a reducer](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=accounts%20from%20a-,reducer,-%2C%20or%20in%20any)\
-🔒 [Minting unlimited tokens to himself is possile for an attacker if a custom token contract does not change `access` permission from `none` to at least `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=can%20mint%20an-,arbitrary,-number%20of%20tokens)\
-🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-le-token)
+🔒 [Minting unlimited tokens to himself is possile for an attacker if a custom token contract does not change `access` permission from `none` to at least `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=can%20mint%20an-,arbitrary,-number%20of%20tokens)
+
 
 
 ## Resources:
