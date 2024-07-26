@@ -41,7 +41,23 @@ Permissions related issues:\
 🔒 [lack of access controls](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-unsecurecontract:~:text=not%20very%20secure%3A-,Anyone,-can%20call%20the)\
 🔒 [Minting unlimited tokens to himself is possile for an attacker if a custom token contract does not change `access` permission from `none` to at least `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=can%20mint%20an-,arbitrary,-number%20of%20tokens)
 
-
+## Development best practices
+- Do not assume that the fact that someone has to pay transaction fees doesn't have incentives to attack your zkApp
+- Work with the compiler, don't try to get round the way that 01js works
+- Be very aware of what is part of the proof and what is not
+- Make sure that your code is not under constrained - all the necessary checks are
+part of the proof.
+- Don't make assumptions about the caller
+- Be aware of pre conditions for the update
+- Restrict the permissions as much as you can.
+- Be careful when calling external contracts and accounts, you need to be sure your
+call will succeed.
+- Make sure the access control is accurate and enforced
+- Have a test suite, don't just test the 'happy path'
+- Put yourself in an adversarial mindset and try to break your code
+- Get your code audited
+- Have a plan to react to attacks
+- Keep up to date, we are at a very early stage.
 
 ## Resources:
 Documentation:
