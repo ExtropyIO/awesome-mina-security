@@ -15,7 +15,8 @@ PrivateKey, PublicKey, Signature; // useful for accounts and signing
 new Group(x, y); // a point on our elliptic curve, accepts two Fields/numbers/strings
 Scalar; // the corresponding scalar field (different than Field)
 
-CircuitString.from('some string'); // string of max length 128
+CircuitString.from('some string'); // string of max length 128. Note: CircuitString is an array of 128 Fields, where each Field represents a char in UTF-16 format thus there is an offeset of 48 -> e.g. the number 3 will be stored as 51
+    Each char is represented in UTF-16 decimals, for example:
 ```
 - It's possible to have custom data types creating a class that extends `Struct({ })` 
 ```js

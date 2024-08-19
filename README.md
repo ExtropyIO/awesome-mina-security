@@ -71,6 +71,7 @@ Tools & Frameworks:
 - [zkApps official examples](https://github.com/o1-labs/o1js/tree/main/src/examples/zkapps) 
 - [Mina Playground](https://www.minaplayground.com/)
 - [Protokit](https://protokit.dev/)
+- [GraphQL queries](https://graphql.minaexplorer.com/)
 
 News:
 - [zkok MinaBlog](https://minablog.zkok.io/) 
