@@ -271,6 +271,7 @@ Mina.setActiveInstance(Local);
 - Reducers are objects that take a list of actions and allows you to call on them:
   -  `dispatch()` -> like emitting events, it simply pushes one new action to your account's `actionState`
   -  `reduce()` -> allows you to write more complex code in order to read and do operations on the actions of the `actionState` . Below an example of using reduce() to find an action = Field(1000) in a list of actions
+- Max queue of dispatched actions is 100 (check) and when `reduce()` is called it will use latest 100 of them (soo if there is 102, first 2 would be lost). To avoid any loss zkPrograms can be used to reduce actions offchain: such a pattern allows the reducer to handle actions no matter how large the actionState queue is.
 - A new kind of reducers is [under development](https://github.com/o1-labs/o1js/pull/1676): the goal is to reduce actions in small batches and avoid deadlock when more actions than your batch size are pending. 
 - To use Actions & Reducers:
 ```js
@@ -297,6 +298,8 @@ Mina.setActiveInstance(Local);
 
   }
 ```
+- Suggest read [this article](https://zknoid.medium.com/mina-action-reducers-guide-why-we-need-them-81b6836c1700) also.
+
 
 #### Fetching events & actions
 - TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions)

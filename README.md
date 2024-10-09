@@ -25,9 +25,12 @@ Generic issues:\
 🔒 [Use on-chain values without checking them both at verification and proving time](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=off%2Dchain%20execution.-,When,-you%20use%20an)\
 🔒 [Circumventing 01js security features should be avoided](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#fix-adding-the-missing-constraints:~:text=flag%20in%20general.-,Security,-advice%20%232%3A%20Don%27t)\
 🔒 [Possible race conditions when many users read/write the state concurrently](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/smart-contracts#:~:text=and%20update%20state-,concurrently,-.%20It%20is%20applicable)\
+🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-le-token)
+
+Actions & reducers issues:\
 🔒 [The `reduce()` method breaks if more than the hard-coded number (default: 32) of actions are pending](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer)\
 🔒 [Be careful when creating Account Updates from a reducer](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=accounts%20from%20a-,reducer,-%2C%20or%20in%20any)\
-🔒 [Always extend the official `TokenContract` standard instead of building a custom token from scratch](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#when-developing-a-token-extend-a-standard-token-contract) + [mina-fungible-token repo (built on top of `TokenContract`)](https://github.com/MinaFoundation/mina-le-token)
+🔒
 
 Permissions related issues:\
 🔒 [Explicitly setting Permissions to default is unnecessary if no other permissions are modified in the `init()` function](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#default-permissions:~:text=send%3A%20Permissions.proof()%2C-,Alternatively,-%2C%20you%20can%20just)\
