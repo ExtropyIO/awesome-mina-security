@@ -13,6 +13,7 @@
     - [Deploy a zkApp and entities involved when running code](#deploy-a-zkapp-and-entities-involved-when-running-code)
     - [Writing a zkApp](#writing-a-zkapp)
     - [Permissions and authorizations](#permissions-and-authorizations)
+    - [Account Updates](#account-updates)
     - [Events](#events)
     - [Actions \& Reducers](#actions--reducers)
     - [Fetching events \& actions](#fetching-events--actions)
@@ -243,6 +244,19 @@ Mina.setActiveInstance(Local);
 - The permission named `setVerificationKey` allows smart contract upgradeability. This is useful for letting zkApp developers to update the logic of their zkApp and keep them working if the Mina Protocol will undergo an update in the future.:
   - `setVerificationKey` has slightly different authorizations types: `none`, `signature`, `proofOrSignature` exist as they were, instead `impossible` now is `impossibleDuringCurrentVersion` and `proof` now is `proofDuringCurrentVersion`
   - If set to `impossibleDuringCurrentVersion()` it will not be possible to update the verification key unless an hardfork happens, namely the new transaction version is greater than the old one. More [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#upgrading-after-an-update-to-the-mina-protocol) and [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-impossible-to-upgrade).
+
+#### Account Updates
+We talked about Account Updates in different paragraphs. Let's summarize the informations provided:
+- Account Updates is nothing more that a JSON file in plain text containing
+  - precondition of the previous state
+  - a list of the changes to apply on-chain to different accounts (one item for account) when sending a transaction.
+- When code is executed locally, the list of Account Updates is created
+- Applying the changes described within Account Updates needs to be authorized by either a Signature or Proof.
+- When `tx.prove()` is called, a proof for the defined Account Updates is created. For zkApps the public input is the account update that is passed in implicitly with `tx.prove()`
+- The proof and account updates are signed and sent to the Mina network as a transaction. If the proof is valid, then the changes described in the Account Updates are applied to the zkApp updating its state
+- The integrity of these account updates is ensured by passing a hash of the account updates as a public input to the smart contract. 
+- The account updates must be present and unmodified for the verification function to pass successfully when it runs on Mina.
+
 
 #### Events
 - are informations passed along with a transaction
