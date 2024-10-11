@@ -132,6 +132,7 @@ After it if we look to the [appState](https://minascan.io/devnet/account/B62qkeb
 
 
 ### Testing
+TO-DO:
 - https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps#3-add-testing-code 
 - https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps#5-create-integration-test
 - https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/getting-started-zkapps#7-test-with-lightnet

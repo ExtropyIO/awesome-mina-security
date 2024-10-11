@@ -29,8 +29,7 @@ Generic issues:\
 
 Actions & reducers issues:\
 🔒 [The `reduce()` method breaks if more than the hard-coded number (default: 32) of actions are pending](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/actions-and-reducer)\
-🔒 [Be careful when creating Account Updates from a reducer](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=accounts%20from%20a-,reducer,-%2C%20or%20in%20any)\
-🔒
+🔒 [Be careful when creating Account Updates from a reducer](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#be-careful-with-creating-account-updates-from-a-reducer)\
 
 Permissions related issues:\
 🔒 [Explicitly setting Permissions to default is unnecessary if no other permissions are modified in the `init()` function](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#default-permissions:~:text=send%3A%20Permissions.proof()%2C-,Alternatively,-%2C%20you%20can%20just)\
@@ -42,7 +41,7 @@ Permissions related issues:\
 🔒 [smart contract interactions are limited to `signature` instead of `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-unsecurecontract:~:text=the%20transaction%20succeeds.-,However,-%2C%20this%20way%20of)\
 🔒 [restrictive permissions can be circumvented if `setPermissions` is not set to impossible](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-impossible-to-upgrade:~:text=For%20the-,sake,-of%20security%2C%20it)\
 🔒 [lack of access controls](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/permissions#example-unsecurecontract:~:text=not%20very%20secure%3A-,Anyone,-can%20call%20the)\
-🔒 [Minting unlimited tokens to himself is possile for an attacker if a custom token contract does not change `access` permission from `none` to at least `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=can%20mint%20an-,arbitrary,-number%20of%20tokens)
+🔒 [Minting unlimited tokens to himself is possile for an attacker if a custom token contract does not change `access` permission from `none` to at least `proof`](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/introduction-to-zkapps/secure-zkapps#dont-deadlock-your-zkapp-by-interacting-with-unknown-accounts:~:text=can%20mint%20an-,arbitrary,-number%20of%20tokens)\
 🔒 Setting `access` to `impossible` makes your account inaccessible: no one will ever be able to call their contract againt. It's like deleting.
 
 ## Development best practices

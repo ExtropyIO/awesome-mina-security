@@ -16,6 +16,7 @@
     - [Account Updates](#account-updates)
     - [Events](#events)
     - [Actions \& Reducers](#actions--reducers)
+    - [ActionState](#actionstate)
     - [Fetching events \& actions](#fetching-events--actions)
     - [Time Locked accounts](#time-locked-accounts)
     - [Custom Tokens](#custom-tokens)
@@ -314,6 +315,19 @@ We talked about Account Updates in different paragraphs. Let's summarize the inf
 ```
 - Suggest read [this article](https://zknoid.medium.com/mina-action-reducers-guide-why-we-need-them-81b6836c1700) also.
 
+#### ActionState
+- In Actions & Reducers we said that with `dispatch()` a new action is pushed pushed on the `actionState` and with `reduce()` operations are made on the actions of the `actionState`  
+- Only archive nodes store all actions themselves, while Ordinary nodes do not store actions directly: they store the hash of the Merkle list of actions (it's the hash of a MerkleList of MerkleLists)
+- To retrieve the actionState:
+  ```js
+  this.account.actionState.getAndRequireEquals()
+  ```
+- Each zkApp has this value which is updated once at the end of block processing rather than after every transaction in a block.
+- Particularly each zkApp does not store only the latest `actionState` , saved in `actionState[0]` position, but also the other previous 4. 
+  ![Alt text](/img/actionState.png) 
+- When a new `actionState` hash needs to be added to the array, `actionState[4]` is deleted and the other are shifted one position down
+- Default value for empty `actionState` hashes is [25079927036070901246064867767436987657692091363973573142121686150614948079097](https://github.com/o1-labs/o1js-bindings/blob/2d409a4aac8ef8fa3b565df1dad62305e0ae65eb/crypto/constants.ts#L235)
+- As from this [post](https://zknoid.medium.com/mina-action-reducers-guide-lets-take-a-closer-look-2c4685715b78#:~:text=0%5D%20%3D%20newActionState%3B-,Why%20Five%20States%3F,-When%20you%20use), since generating proofs involving actions takes more time to be computed, `actionState` may change in that time. Storing up to 4 previous states gives five blocks (around 15 minutes) to submit a proof and avoid failures if the latest `actionState` hash changed.
 
 #### Fetching events & actions
 - TO-DO [here](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/fetch-events-and-actions)
